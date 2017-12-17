@@ -76,13 +76,17 @@ void MyUnitTest::UnitTestManager::RunUnitTestMethod(const string & group_name, c
 	auto iter = m_Content.find(group_name);
 	if (iter != m_Content.end())
 	{
-		if (name != "")
+		if (name != "*")
 		{
 			if (!RunUnitTestMethodInGroup(name, iter->second))
 			{
 				TestFailedWithNoMethod();
 				return;
 			}
+		}
+		else
+		{
+			RunUnitTestMethodInGroup(iter->second);
 		}
 	}
 	else
